@@ -46,8 +46,8 @@ you had added, which might give you a good choice from your past dining experien
 ## User Stories
 - As a user, I want to be able to add a new `RestaurantReview` object to my `RestaurantReviewList`
 and specify the name, rating on a scale of 5, the average cost, the keywords or relevant title of the 
-new restaurant, and whether you want to visit it.
-- As a user, I want to be able to visit a subset of restaurant reviews of my choice from 
+new restaurant, and whether you want to visit it again.
+- As a user, I want to be able to view a subset of restaurant reviews of my choice from 
 the `RestaurantReviewList`.
 - As a user, I want to be able to remove the review information of a closed restaurant
   from my `RestaurantReviewList`.
