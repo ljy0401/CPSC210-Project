@@ -43,11 +43,41 @@ public class RestaurantReview {
 
     // EFFECTS: returns the title of the restaurant
     public String getTitle() {
-        return this.name;
+        return this.title;
     }
 
     // EFFECTS: returns whether the user wants to go to that restaurant again
     public boolean getGoAgain() {
         return this.goAgain;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set the name of the restaurant
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set the rating of the restaurant
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set the average cost of the restaurant
+    public void setAverageCost(int averageCost) {
+        this.averageCost = averageCost;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set the title of the restaurant
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set whether the user wants to go to that restaurant again
+    public void setGoAgain(boolean goAgain) {
+        this.goAgain = goAgain;
     }
 }
