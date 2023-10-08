@@ -54,6 +54,6 @@ the `RestaurantReviewList`.
 - As a user, I want to be able to update the review information of a restaurant after I revisit 
 a specific restaurant.
 - As a user, I want to be able to visualize the distribution of my rating scores (on a scale of 5)
-from all restaurants I have visited in the history.
+from all restaurants I have visited in the history (not the main focus in early phases).
 
   
