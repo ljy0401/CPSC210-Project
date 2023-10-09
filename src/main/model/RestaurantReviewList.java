@@ -86,11 +86,4 @@ public class RestaurantReviewList {
     public List<RestaurantReview> getReviewList() {
         return this.reviewList;
     }
-
-//    This setter is never used in this application, so I leave it as
-//    a template just in case if I want to use it in the future.
-//    // EFFECTS: set the review list to a new restaurants review list
-//    public void setReviewList(List<RestaurantReview> newReviewList) {
-//        this.reviewList = newReviewList;
-//    }
 }

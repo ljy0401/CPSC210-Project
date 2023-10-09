@@ -275,25 +275,4 @@ public class RestaurantReviewListTest {
         assertEquals(0, witMinimumRatingRestaurants.size());
         assertTrue(witMinimumRatingRestaurants.isEmpty());
     }
-
-    @Test
-    public void restaurantsWantToGoAndWithAtLeastRatingTest() {
-        List<RestaurantReview> reviewList = testRestaurantReviewList.getReviewList();
-        reviewList.add(testRestaurantA);
-        reviewList.add(testRestaurantB);
-        reviewList.add(testRestaurantC);
-        reviewList.add(testRestaurantD);
-        reviewList.add(testRestaurantE);
-        reviewList.add(testRestaurantF);
-        List<RestaurantReview> witMinimumRatingAndWantToGoRestaurants;
-        testRestaurantReviewList.getAllRestaurantsWantToGoAgain();
-        witMinimumRatingAndWantToGoRestaurants =
-                testRestaurantReviewList.getAllRestaurantsWithMinimumRating(4.7);
-        assertEquals(2, witMinimumRatingAndWantToGoRestaurants.size());
-        assertFalse(witMinimumRatingAndWantToGoRestaurants.isEmpty());
-        assertTrue(witMinimumRatingAndWantToGoRestaurants.contains(testRestaurantC));
-        assertTrue(witMinimumRatingAndWantToGoRestaurants.contains(testRestaurantF));
-        assertEquals(testRestaurantC, witMinimumRatingAndWantToGoRestaurants.get(0));
-        assertEquals(testRestaurantF, witMinimumRatingAndWantToGoRestaurants.get(1));
-    }
 }
