@@ -29,11 +29,14 @@ public class RestaurantReviewList {
     // EFFECTS: remove the review information of a restaurant in the list that has
     // the same name as the specified name
     public void removeRestaurantReview(String name) {
+        RestaurantReview movedRestaurant = new RestaurantReview("sample restaurant",
+                3, 40,"sample title", true);
         for (RestaurantReview rr : this.reviewList) {
             if (name.equals(rr.getName())) {
-                reviewList.remove(rr);
+                movedRestaurant = rr;
             }
         }
+        this.reviewList.remove(movedRestaurant);
     }
 
     // REQUIRES: the name is not an empty string, the review list is not empty,
@@ -84,4 +87,9 @@ public class RestaurantReviewList {
     public List<RestaurantReview> getReviewList() {
         return this.reviewList;
     }
+
+//    // EFFECTS: set the review list to a new restaurants review list
+//    public void setReviewList(List<RestaurantReview> newReviewList) {
+//        this.reviewList = newReviewList;
+//    }
 }

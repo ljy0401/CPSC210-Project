@@ -51,11 +51,11 @@ public class RestaurantReview {
         return this.goAgain;
     }
 
-    // MODIFIES: this
-    // EFFECTS: set the name of the restaurant
-    public void setName(String name) {
-        this.name = name;
-    }
+//    // MODIFIES: this
+//    // EFFECTS: set the name of the restaurant
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     // MODIFIES: this
     // EFFECTS: set the rating of the restaurant
