@@ -49,13 +49,9 @@ and specify the name, rating on a scale of 5, the average cost, the keywords or 
 new restaurant, and whether you want to visit it again.
 - As a user, I want to be able to view a subset of restaurant reviews of my choice from 
 the `RestaurantReviewList`. For example, I want to view all restaurants that I want to go again;
-I want to view all restaurants that have a rating of at least some number.
+I want to view all restaurants that have a rating with at least some points.
 - As a user, I want to be able to remove the review information of a closed restaurant
   from my `RestaurantReviewList`.
 - As a user, I want to be able to update the review information of a restaurant after I revisit 
 a specific restaurant.
-- As a user, I want to be able to visualize the distribution of my rating scores (on a scale of 5)
-from all restaurants I have visited in the history (not the main focus in early phases, will save this
-user story until later phases).
-
   
