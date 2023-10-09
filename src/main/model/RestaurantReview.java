@@ -51,6 +51,8 @@ public class RestaurantReview {
         return this.goAgain;
     }
 
+//    This setter is never used in this application, so I leave it as
+//    a template just in case if I want to use it in the future.
 //    // MODIFIES: this
 //    // EFFECTS: set the name of the restaurant
 //    public void setName(String name) {

@@ -29,8 +29,7 @@ public class RestaurantReviewList {
     // EFFECTS: remove the review information of a restaurant in the list that has
     // the same name as the specified name
     public void removeRestaurantReview(String name) {
-        RestaurantReview movedRestaurant = new RestaurantReview("sample restaurant",
-                3, 40,"sample title", true);
+        RestaurantReview movedRestaurant = null;
         for (RestaurantReview rr : this.reviewList) {
             if (name.equals(rr.getName())) {
                 movedRestaurant = rr;
@@ -88,6 +87,8 @@ public class RestaurantReviewList {
         return this.reviewList;
     }
 
+//    This setter is never used in this application, so I leave it as
+//    a template just in case if I want to use it in the future.
 //    // EFFECTS: set the review list to a new restaurants review list
 //    public void setReviewList(List<RestaurantReview> newReviewList) {
 //        this.reviewList = newReviewList;
