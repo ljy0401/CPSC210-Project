@@ -107,7 +107,7 @@ public class RestaurantReviewApp {
         }
 
         restaurantReviewList.addRestaurantReview(name, rating, averageCost, title, goAgain);
-        System.out.println("The review information of restaurant" + name
+        System.out.println("The review information of restaurant " + name
                 + " has been successfully added to the review list.");
         System.out.println("You now have the following restaurants in your review list:");
 
@@ -180,11 +180,15 @@ public class RestaurantReviewApp {
     private void processGoAgainMethod() {
         List<RestaurantReview> goAgainRestaurants = restaurantReviewList.getAllRestaurantsWantToGoAgain();
         System.out.print("The following restaurants are the ones you want to go again: \n");
-        for (RestaurantReview rr : goAgainRestaurants) {
-            System.out.print("The restaurant " + rr.getName() + " has a rating score "
-                    + rr.getRating() + " out of 5, and the average cost of CAD $"
-                    + rr.getAverageCost() + ". The title of the restaurant is "
-                    + rr.getTitle() + ".\n");
+        if (goAgainRestaurants.isEmpty()) {
+            System.out.print("You do not have any restaurants that you want to go again.\n");
+        } else {
+            for (RestaurantReview rr : goAgainRestaurants) {
+                System.out.print("The restaurant " + rr.getName() + " has a rating score "
+                        + rr.getRating() + " out of 5, and the average cost of CAD $"
+                        + rr.getAverageCost() + ". The title of the restaurant is "
+                        + rr.getTitle() + ".\n");
+            }
         }
     }
 
