@@ -54,4 +54,8 @@ I want to view all restaurants that have a rating with at least some points.
   from my `RestaurantReviewList`.
 - As a user, I want to be able to update the review information of a restaurant after I revisit 
 a specific restaurant.
+- As a user, when I select the quit option from the application menu, I want to be reminded to save my 
+restaurant review list to file and have the option to do so or not.
+- As a user, when I start the application, I want to be given the option to load my 
+previously saved restaurant review list last time from file.
   

@@ -53,7 +53,7 @@ public class RestaurantReviewApp {
     // EFFECTS: displays all options for a user to use this application from the menu
     private void showMenuOptions() {
         System.out.println("\nHow would you like to use the restaurant review APP?"
-                + "Please select from the following options:");
+                + " Please select from the following options:");
         System.out.println("\tadd -> add a new restaurant to the review information list");
         System.out.println("\tremove -> remove an existing restaurant from the review "
                 + "information list");
