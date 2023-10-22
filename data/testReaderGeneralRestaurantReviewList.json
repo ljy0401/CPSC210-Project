@@ -1,0 +1,16 @@
+{"restaurant reviews": [
+  {
+    "go again": true,
+    "name": "Restaurant A",
+    "rating": 4.8,
+    "average cost": 50,
+    "title": "good steak"
+  },
+  {
+    "go again": false,
+    "name": "Restaurant B",
+    "rating": 2,
+    "average cost": 20,
+    "title": "slow service"
+  }
+]}
