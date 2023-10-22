@@ -1,11 +1,19 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // This class represents the review information of a restaurant
 // written by the user of this application. The review information
 // contains the name, the rating of the restaurant on a scale of 5,
 // the average cost in that restaurant, the relevant title or
 // keywords for that restaurant, and whether wanting to go again.
-public class RestaurantReview {
+
+// The last part of this class is designed based on the
+// given example JsonSerializationDemo. You can find this reference on
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.
+
+public class RestaurantReview implements Writable {
     private String name;  // the name of the restaurant
     private double rating;  // the rating of the restaurant on a scale of 5
     private int averageCost; // the average cost in that restaurant (in whole CAD)
@@ -73,5 +81,16 @@ public class RestaurantReview {
     // EFFECTS: set whether the user wants to go to that restaurant again
     public void setGoAgain(boolean goAgain) {
         this.goAgain = goAgain;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("rating", rating);
+        json.put("average cost", averageCost);
+        json.put("title", title);
+        json.put("go again", goAgain);
+        return json;
     }
 }

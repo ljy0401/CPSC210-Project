@@ -1,10 +1,19 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // This class represents a collection (list) of review information of restaurants.
-public class RestaurantReviewList {
+
+// The last part of this class is designed based on the
+// given example JsonSerializationDemo. You can find this reference on
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.
+
+public class RestaurantReviewList implements Writable {
     private List<RestaurantReview> reviewList;
 
     // EFFECTS: construct a new restaurant review list with no restaurants in it
@@ -85,5 +94,23 @@ public class RestaurantReviewList {
     // EFFECTS: returns the restaurants review list
     public List<RestaurantReview> getReviewList() {
         return this.reviewList;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("restaurant reviews", restaurantReviewsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns restaurant reviews in this review list as a JSON array
+    private JSONArray restaurantReviewsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (RestaurantReview rr : reviewList) {
+            jsonArray.put(rr.toJson());
+        }
+
+        return jsonArray;
     }
 }
