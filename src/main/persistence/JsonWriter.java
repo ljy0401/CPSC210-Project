@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 // Represents a writer that writes JSON representation of a restaurant review list to file
 
-// The most part of this class is designed based on the
+// The most parts of this class is designed based on the
 // given example JsonSerializationDemo. You can find this reference on
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.
 

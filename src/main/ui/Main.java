@@ -2,8 +2,14 @@ package ui;
 
 import model.RestaurantReview;
 
+import java.io.FileNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
-        new RestaurantReviewApp();
+        try {
+            new RestaurantReviewApp();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

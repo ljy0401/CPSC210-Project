@@ -2,7 +2,11 @@ package ui;
 
 import model.RestaurantReview;
 import model.RestaurantReviewList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,13 +15,24 @@ import java.util.Scanner;
 // my user interface class. However, the codes are all written myself and I just use that project
 // as a reference to get started.
 // The project could be found on gitHub at: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+// Some necessary parts of this class is designed based on the
+// given example JsonSerializationDemo. You can find this reference on
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.
+
 public class RestaurantReviewApp {
 
     private Scanner scanner;
     private RestaurantReviewList restaurantReviewList;
+    private static final String JSON_STORE = "./data/restaurantreviewlist.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the restaurant review application
-    public RestaurantReviewApp() {
+    public RestaurantReviewApp() throws FileNotFoundException {
+        scanner = new Scanner(System.in);
+        restaurantReviewList = new RestaurantReviewList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
@@ -64,6 +79,8 @@ public class RestaurantReviewApp {
                 + " you want to go again from the review list");
         System.out.println("\thigher rating -> filter and get all restaurants that"
                 + " have a rating score of at least some number of your choice from the review list");
+        System.out.println("\tsave -> save your restaurant review list to file");
+        System.out.println("\tload -> load your saved restaurant review list from file");
         System.out.println("\tquit -> quit the APP, thanks for using");
     }
 
@@ -82,6 +99,10 @@ public class RestaurantReviewApp {
             processGoAgainMethod();
         } else if (command.equals("higher rating")) {
             processHigherRatingMethod();
+        } else if (command.equals("save")) {
+            saveRestaurantReviewList();
+        } else if (command.equals("load")) {
+            loadRestaurantReviewList();
         } else {
             System.out.println("This is not an valid option, please retry with an valid option "
                     + "from the menu.");
@@ -226,6 +247,29 @@ public class RestaurantReviewApp {
                             + rr.getTitle() + " and you don't want to go there again. \n");
                 }
             }
+        }
+    }
+
+    // EFFECTS: saves the restaurant review list to file
+    private void saveRestaurantReviewList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(restaurantReviewList);
+            jsonWriter.close();
+            System.out.println("Successfully saved the restaurant review list to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads the restaurant review list from file
+    private void loadRestaurantReviewList() {
+        try {
+            restaurantReviewList = jsonReader.read();
+            System.out.println("Successfully loaded the restaurant review list from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

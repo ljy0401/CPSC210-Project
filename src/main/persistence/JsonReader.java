@@ -11,6 +11,11 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads the restaurant review list from JSON data stored in file
+
+// The most parts of this class is designed based on the
+// given example JsonSerializationDemo. You can find this reference on
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.
+
 public class JsonReader {
     private String source;
 
@@ -59,10 +64,10 @@ public class JsonReader {
     // EFFECTS: parses a restaurant review from JSON object and adds it to the review list
     private void addRestaurantReview(RestaurantReviewList rrl, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        double rating = Double.parseDouble(jsonObject.getString("rating"));
-        int averageCost = Integer.parseInt(jsonObject.getString("average cost"));
+        double rating = jsonObject.getDouble("rating");
+        int averageCost = jsonObject.getInt("average cost");
         String title = jsonObject.getString("title");
-        boolean goAgain = Boolean.parseBoolean(jsonObject.getString("go again"));
+        boolean goAgain = jsonObject.getBoolean("go again");
         rrl.addRestaurantReview(name, rating, averageCost, title, goAgain);
     }
 }
