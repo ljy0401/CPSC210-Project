@@ -1,20 +1,6 @@
 {"restaurant reviews": [
     {
         "go again": true,
-        "name": "rg",
-        "rating": 2,
-        "average cost": 50,
-        "title": "bad"
-    },
-    {
-        "go again": true,
-        "name": "rm",
-        "rating": 4,
-        "average cost": 10,
-        "title": "burgers"
-    },
-    {
-        "go again": true,
         "name": "rr",
         "rating": 1,
         "average cost": 23,
@@ -26,5 +12,19 @@
         "rating": 3,
         "average cost": 33,
         "title": "I like it."
+    },
+    {
+        "go again": true,
+        "name": "rk",
+        "rating": 2,
+        "average cost": 23,
+        "title": "yummy"
+    },
+    {
+        "go again": true,
+        "name": "rd",
+        "rating": 5,
+        "average cost": 20,
+        "title": "good"
     }
 ]}
