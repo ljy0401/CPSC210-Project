@@ -54,9 +54,9 @@ I want to view all restaurants that have a rating with at least some points.
   from my `RestaurantReviewList`.
 - As a user, I want to be able to update the review information of a restaurant after I revisit 
 a specific restaurant.
-- As a user, I want to be able to save my restaurant review list to file and have the option to do so or just quit.
-- As a user, when I start the application, I want to be given the option to load my 
-previously saved restaurant review list saved last time from file.
+- As a user, I want to be able to save my restaurant review list to file if I want to do so before I quit.
+- As a user, when I start the application, I want to be able to load my 
+previously saved restaurant review list saved last time from file if I want to do so when I start the application.
   
 
 ## Instructions for Grader

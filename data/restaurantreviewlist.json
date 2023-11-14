@@ -19,12 +19,5 @@
         "rating": 2,
         "average cost": 23,
         "title": "yummy"
-    },
-    {
-        "go again": true,
-        "name": "rd",
-        "rating": 5,
-        "average cost": 20,
-        "title": "good"
     }
 ]}
