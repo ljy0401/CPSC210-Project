@@ -230,7 +230,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String nameRemoved = removeRestaurantNameTextField.getText();
             restaurantReviewList.removeRestaurantReview(nameRemoved);
-            System.out.println("Removed!!");
+            System.out.println("Removed!!!!");
         }
     }
 
