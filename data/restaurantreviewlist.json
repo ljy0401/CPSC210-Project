@@ -1,23 +1,7 @@
-{"restaurant reviews": [
-    {
-        "go again": true,
-        "name": "rr",
-        "rating": 1,
-        "average cost": 23,
-        "title": "bad"
-    },
-    {
-        "go again": true,
-        "name": "rl",
-        "rating": 3,
-        "average cost": 33,
-        "title": "I like it."
-    },
-    {
-        "go again": true,
-        "name": "rk",
-        "rating": 2,
-        "average cost": 23,
-        "title": "yummy"
-    }
-]}
+{"restaurant reviews": [{
+    "go again": true,
+    "name": "ee",
+    "rating": 2,
+    "average cost": 12,
+    "title": "dsa"
+}]}
