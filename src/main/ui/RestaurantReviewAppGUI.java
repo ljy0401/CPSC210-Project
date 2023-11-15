@@ -1,5 +1,6 @@
 package ui;
 
+import model.RestaurantReview;
 import model.RestaurantReviewList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public class RestaurantReviewAppGUI extends JFrame {
     private static final int WIDTH = 814;
@@ -24,12 +26,17 @@ public class RestaurantReviewAppGUI extends JFrame {
     private JButton addButton;
     private JButton removeButton;
     private JButton goAgainButton;
+    private JButton viewButton;
     private JTextField nameTextField;
     private JTextField ratingTextField;
     private JTextField aveCostTextField;
     private JTextField titleTextField;
     private JTextField goAgainTextField;
     private JTextField removeRestaurantNameTextField;
+    private JTextArea goAgainTextArea;
+    private JScrollPane goAgainScrollPane;
+    private JTextArea viewTextArea;
+    private JScrollPane viewScrollPane;
 
     // MODIFIES: this
     // EFFECTS: constructs the frame for the Restaurant Review APP graphical user interface
@@ -86,7 +93,19 @@ public class RestaurantReviewAppGUI extends JFrame {
         goAgainButton.setFocusable(false);
         goAgainButton.setBounds(550, 520, 250, 30);
         frame.add(goAgainButton);
+        viewButton = new JButton("View All The Restaurant Reviews!");
+        viewButton.addActionListener(new ViewButtonListener());
+        viewButton.setBounds(200,170,400,30);
+        viewButton.setFocusable(false);
+        frame.add(viewButton);
 
+        viewTextArea = new JTextArea();
+        viewTextArea.setEditable(false);
+        viewScrollPane = new JScrollPane(viewTextArea);
+        viewScrollPane.setBounds(0,25,800,145);
+        viewScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        viewScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        frame.add(viewScrollPane);
         frame.add(viewPanel);
 
         JLabel nameLabel = new JLabel();
@@ -136,6 +155,13 @@ public class RestaurantReviewAppGUI extends JFrame {
         frame.add(removeRestaurantNameTextField);
         frame.add(removeMethodPanel);
 
+        goAgainTextArea = new JTextArea();
+        goAgainTextArea.setEditable(false);
+        goAgainScrollPane = new JScrollPane(goAgainTextArea);
+        goAgainScrollPane.setBounds(550,250,250,250);
+        goAgainScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        goAgainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        frame.add(goAgainScrollPane);
         frame.add(goAgainMethodPanel);
 
         frame.add(loadPanel);
@@ -230,7 +256,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String nameRemoved = removeRestaurantNameTextField.getText();
             restaurantReviewList.removeRestaurantReview(nameRemoved);
-            System.out.println("Removed!!!!");
+            System.out.println("Removed!");
         }
     }
 
@@ -238,7 +264,46 @@ public class RestaurantReviewAppGUI extends JFrame {
     private class GoAgainButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            List<RestaurantReview> goAgainRestaurants = restaurantReviewList.getAllRestaurantsWantToGoAgain();
+            if (goAgainRestaurants.isEmpty()) {
+                goAgainTextArea.setText("You don't have any restaurants that you \nwant to revisit!");
+            } else {
+                String goAgainMessage = "";
+                for (RestaurantReview rr : goAgainRestaurants) {
+                    goAgainMessage = goAgainMessage + rr.getName() + "\n";
+                }
+                goAgainTextArea.setText(goAgainMessage);
+            }
             System.out.println("Go Again!");
+        }
+    }
+
+    // the ActionListener class for the view button
+    private class ViewButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            List<RestaurantReview> restaurantReviews = restaurantReviewList.getReviewList();
+            if (restaurantReviews.isEmpty()) {
+                viewTextArea.setText("You don't have any restaurants in your restaurant review "
+                        + "application right now! Please add some first!");
+            } else {
+                String viewMessage = "";
+                for (RestaurantReview rr : restaurantReviews) {
+                    if (rr.getGoAgain()) {
+                        viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
+                                + rr.getRating() + " out of 5, and the average cost of CAD $"
+                                + rr.getAverageCost() + ". The title of the restaurant is "
+                                + rr.getTitle() + " and you want to go there again. \n";
+                    } else {
+                        viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
+                                + rr.getRating() + " out of 5, and the average cost of CAD $"
+                                + rr.getAverageCost() + ". The title of the restaurant is "
+                                + rr.getTitle() + " and you don't want to go there again. \n";
+                    }
+                }
+                viewTextArea.setText(viewMessage);
+            }
+            System.out.println("Viewed!");
         }
     }
 
