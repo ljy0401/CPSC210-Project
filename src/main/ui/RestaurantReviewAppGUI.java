@@ -14,6 +14,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+// This class represents the main class of the graphical user interface (GUI)
+// of the restaurant review application. In this application, you can load and save
+// the restaurant review information, add new restaurant to the review list, remove
+// existing restaurants from the review list, view review information of all restaurants
+// you have added to this application, and filter out those you want to revisit.
 public class RestaurantReviewAppGUI extends JFrame {
     private static final int WIDTH = 814;
     private static final int HEIGHT = 638;
@@ -307,7 +312,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         }
     }
 
-    // EFFECTS: the main method that executes the graphical user interface
+    // EFFECTS: the main method that executes the graphical user interface window
     public static void main(String[] args) {
         new RestaurantReviewAppGUI();
     }

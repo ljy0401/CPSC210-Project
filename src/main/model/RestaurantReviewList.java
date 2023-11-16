@@ -97,6 +97,7 @@ public class RestaurantReviewList implements Writable {
     }
 
     @Override
+    // EFFECTS: returns the restaurant review list (a JSON array) as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("restaurant reviews", restaurantReviewsToJson());
@@ -110,7 +111,6 @@ public class RestaurantReviewList implements Writable {
         for (RestaurantReview rr : reviewList) {
             jsonArray.put(rr.toJson());
         }
-
         return jsonArray;
     }
 }

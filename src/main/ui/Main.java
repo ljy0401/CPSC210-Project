@@ -1,9 +1,8 @@
 package ui;
 
-import model.RestaurantReview;
-
 import java.io.FileNotFoundException;
 
+// The main class the console-based user interface of the restaurant review application.
 public class Main {
     public static void main(String[] args) {
         try {

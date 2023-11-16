@@ -27,7 +27,7 @@ public class RestaurantReviewApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // EFFECTS: runs the restaurant review application
+    // EFFECTS: the constructor, runs the restaurant review application
     public RestaurantReviewApp() throws FileNotFoundException {
         scanner = new Scanner(System.in);
         restaurantReviewList = new RestaurantReviewList();
@@ -109,6 +109,9 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: process the "add" method of the restaurant review application
+    // that adds a new restaurant review to the application
     private void processAddMethod() {
         System.out.println("Enter the name of the restaurant.");
         String name = scanner.next();
@@ -137,6 +140,9 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: process the "remove" method of the restaurant review application
+    // that removes a restaurant review from the application
     private void processRemoveMethod() {
         System.out.println("Enter the name of the restaurant that you want to remove from the review list.");
         String name = scanner.next();
@@ -150,6 +156,9 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: process the "update" method of the restaurant review application
+    // that updates the review information of an existing restaurant
     private void processUpdateMethod() {
         System.out.println("Enter the name of the restaurant that you want to update the review information of.");
         String name = scanner.next();
@@ -178,6 +187,9 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: process the "view" method of the restaurant review application
+    // that views all the restaurant review information stored in this APP
     private void processViewMethod() {
         if (restaurantReviewList.getReviewList().isEmpty()) {
             System.out.print("You do not have any restaurants reviewed in the list yet. Please add some.\n");
@@ -198,6 +210,9 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: process the "go again" method of the restaurant review application
+    // that filters out all restaurants that you want to revisit in this application
     private void processGoAgainMethod() {
         List<RestaurantReview> goAgainRestaurants = restaurantReviewList.getAllRestaurantsWantToGoAgain();
         System.out.print("The following restaurants are the ones you want to go again: \n");
@@ -213,6 +228,9 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: process the "higher rating" method of the restaurant review application
+    // that returns only those restaurants with a specified minimum rating score
     @SuppressWarnings("methodlength")
     private void processHigherRatingMethod() {
         System.out.println("Enter the minimum rating score of a restaurant on a scale of 5"
@@ -250,6 +268,7 @@ public class RestaurantReviewApp {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the restaurant review list to file
     private void saveRestaurantReviewList() {
         try {

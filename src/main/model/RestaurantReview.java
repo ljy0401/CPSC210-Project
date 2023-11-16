@@ -84,6 +84,7 @@ public class RestaurantReview implements Writable {
     }
 
     @Override
+    // EFFECTS: returns the review information of a restaurant as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

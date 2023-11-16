@@ -60,3 +60,8 @@ previously saved restaurant review list saved last time from file if I want to d
   
 
 ## Instructions for Grader
+- You can locate my visual components of this interface in two places: the first one is when you start this 
+application, there will be a splash image of a restaurant showing up on the screen for **5 seconds**, 
+and then the interface window will appear and the splash image will be removed; the second place is the icon 
+on the application window, even though the icon is small to see, but I did change it to a new icon image rather 
+than the default icon given by IntelliJ.
