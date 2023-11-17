@@ -30,9 +30,9 @@ import java.util.List;
 // https://en.wikipedia.org/wiki/Swing_(Java).
 // Another reference to some components of my graphical user interface (GUI) is a YouTube
 // tutorial video "Java GUI: Full Course (FREE)" by Bro Code found on
-// https://www.youtube.com/watch?v=Kmgo00avvEw. I followed the workflow of the construction of
-// some components of a GUI　taught in that tutorial video, but all codes in this class are
-// written by myself.
+// https://www.youtube.com/watch?v=Kmgo00avvEw.
+// I followed the workflow of the construction of some components of a GUI taught in that
+// tutorial video, but all codes in this class are written by myself.
 public class RestaurantReviewAppGUI extends JFrame {
     // constants
     private static final int WIDTH = 814;
