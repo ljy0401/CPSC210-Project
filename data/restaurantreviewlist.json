@@ -1,13 +1,6 @@
 {"restaurant reviews": [
     {
         "go again": true,
-        "name": "ww",
-        "rating": 2,
-        "average cost": 22,
-        "title": "bad"
-    },
-    {
-        "go again": true,
         "name": "rb",
         "rating": 3,
         "average cost": 23,

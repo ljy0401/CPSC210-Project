@@ -78,17 +78,21 @@ public class RestaurantReviewAppGUI extends JFrame {
         loadButton = new JButton("Load Review From File!");
         loadButton.addActionListener(new LoadButtonListener());
         loadButton.setFocusable(false);
-        loadPanel.add(loadButton);
+        loadButton.setBounds(300, 550, 250, 50);
+        frame.add(loadButton);
         saveButton = new JButton("Save Review To File!");
         saveButton.addActionListener(new SaveButtonListener());
         saveButton.setFocusable(false);
-        savePanel.add(saveButton);
+        saveButton.setBounds(550, 550, 250, 50);
+        frame.add(saveButton);
         addButton = new JButton("Add This Restaurant Review!");
+        addButton.addActionListener(new ViewButtonListener());
         addButton.addActionListener(new AddButtonListener());
         addButton.setFocusable(false);
-        addButton.setBounds(0, 570, 300, 30);
+        addButton.setBounds(0, 550, 300, 50);
         frame.add(addButton);
         removeButton = new JButton("Remove This Restaurant Review!");
+        removeButton.addActionListener(new ViewButtonListener());
         removeButton.addActionListener(new RemoveButtonListener());
         removeButton.setFocusable(false);
         removeButton.setBounds(300, 520, 250, 30);
@@ -163,7 +167,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         goAgainTextArea = new JTextArea();
         goAgainTextArea.setEditable(false);
         goAgainScrollPane = new JScrollPane(goAgainTextArea);
-        goAgainScrollPane.setBounds(550,250,250,250);
+        goAgainScrollPane.setBounds(550,250,250,275);
         goAgainScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         goAgainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         frame.add(goAgainScrollPane);
@@ -251,6 +255,11 @@ public class RestaurantReviewAppGUI extends JFrame {
             String title = titleTextField.getText();
             boolean goAgain = Boolean.parseBoolean(goAgainTextField.getText());
             restaurantReviewList.addRestaurantReview(name,rating,averageCost,title,goAgain);
+            nameTextField.setText("");
+            ratingTextField.setText("");
+            aveCostTextField.setText("");
+            titleTextField.setText("");
+            goAgainTextField.setText("");
             System.out.println("Added!");
         }
     }
@@ -261,6 +270,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String nameRemoved = removeRestaurantNameTextField.getText();
             restaurantReviewList.removeRestaurantReview(nameRemoved);
+            removeRestaurantNameTextField.setText("");
             System.out.println("Removed!");
         }
     }
@@ -275,7 +285,7 @@ public class RestaurantReviewAppGUI extends JFrame {
             } else {
                 String goAgainMessage = "";
                 for (RestaurantReview rr : goAgainRestaurants) {
-                    goAgainMessage = goAgainMessage + rr.getName() + "\n";
+                    goAgainMessage = goAgainMessage + rr.getName() + "\n\n";
                 }
                 goAgainTextArea.setText(goAgainMessage);
             }
@@ -297,13 +307,13 @@ public class RestaurantReviewAppGUI extends JFrame {
                     if (rr.getGoAgain()) {
                         viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
                                 + rr.getRating() + " out of 5, and the average cost of CAD $"
-                                + rr.getAverageCost() + ". The title of the restaurant is "
-                                + rr.getTitle() + " and you want to go there again. \n";
+                                + rr.getAverageCost() + ".\nThe title of the restaurant is "
+                                + rr.getTitle() + " and you want to go there again. \n\n";
                     } else {
                         viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
                                 + rr.getRating() + " out of 5, and the average cost of CAD $"
-                                + rr.getAverageCost() + ". The title of the restaurant is "
-                                + rr.getTitle() + " and you don't want to go there again. \n";
+                                + rr.getAverageCost() + ".\nThe title of the restaurant is "
+                                + rr.getTitle() + " and you don't want to go there again. \n\n";
                     }
                 }
                 viewTextArea.setText(viewMessage);
