@@ -20,163 +20,57 @@ import java.util.List;
 // existing restaurants from the review list, view review information of all restaurants
 // you have added to this application, and filter out those you want to revisit.
 public class RestaurantReviewAppGUI extends JFrame {
+    // constants
     private static final int WIDTH = 814;
     private static final int HEIGHT = 638;
-    private RestaurantReviewList restaurantReviewList;
     private static final String JSON_STORE = "./data/restaurantreviewlist.json";
+
+    // the restaurant review list field and the JSON fields
+    private RestaurantReviewList restaurantReviewList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private JButton loadButton;
-    private JButton saveButton;
-    private JButton addButton;
-    private JButton removeButton;
-    private JButton goAgainButton;
-    private JButton viewButton;
+
+    // the overall frame field
+    private JFrame frame;
+
+    // all the text input fields
     private JTextField nameTextField;
     private JTextField ratingTextField;
     private JTextField aveCostTextField;
     private JTextField titleTextField;
     private JTextField goAgainTextField;
     private JTextField removeRestaurantNameTextField;
+
+    // all fields that display texts
     private JTextArea goAgainTextArea;
     private JScrollPane goAgainScrollPane;
     private JTextArea viewTextArea;
     private JScrollPane viewScrollPane;
 
     // MODIFIES: this
-    // EFFECTS: constructs the frame for the Restaurant Review APP graphical user interface
-    @SuppressWarnings("methodlength")
+    // EFFECTS: constructs the frame and components for the Restaurant Review APP graphical user interface
     public RestaurantReviewAppGUI() {
+        // initialize the Restaurant Review List and the JSON objects
         restaurantReviewList = new RestaurantReviewList();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+
+        // Set up the frame, display the splash image, and set the icon of this application
         displaySplashImage();
-        JFrame frame = new JFrame("Restaurant Review Application");
+        frame = new JFrame("Restaurant Review Application");
         frame.setSize(WIDTH,HEIGHT);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ImageIcon icon = new ImageIcon("images/icon.jpg");
         frame.setIconImage(icon.getImage());
         frame.setLayout(null);
 
-        JPanel viewPanel = addPanel(0,0,800,200);
-        JPanel addMethodPanel = addPanel(0,200,300,400);
-        JPanel removeMethodPanel = addPanel(300,200,250,350);
-        JPanel goAgainMethodPanel = addPanel(550,200,250,350);
-        JPanel loadPanel = addPanel(300,550,250,50);
-        JPanel savePanel = addPanel(550,550,250,50);
-
-        JLabel viewMethodTextLabel = generatePanelTextLabel("You can view all pieces of review information that "
-                + "have been added to this restaurant review application by clicking the \"Display\" button.");
-        JLabel addMethodTextLabel = generatePanelTextLabel("Add a new restaurant review:");
-        JLabel removeMethodTextLabel = generatePanelTextLabel("Remove an existing restaurant review:");
-        JLabel goAgainMethodTextLabel = generatePanelTextLabel("Restaurants you want to go again:");
-        viewPanel.add(viewMethodTextLabel);
-        addMethodPanel.add(addMethodTextLabel);
-        removeMethodPanel.add(removeMethodTextLabel);
-        goAgainMethodPanel.add(goAgainMethodTextLabel);
-
-        loadButton = new JButton("Load Review From File!");
-        loadButton.addActionListener(new LoadButtonListener());
-        loadButton.setFocusable(false);
-        loadButton.setBounds(300, 550, 250, 50);
-        frame.add(loadButton);
-        saveButton = new JButton("Save Review To File!");
-        saveButton.addActionListener(new SaveButtonListener());
-        saveButton.setFocusable(false);
-        saveButton.setBounds(550, 550, 250, 50);
-        frame.add(saveButton);
-        addButton = new JButton("Add This Restaurant Review!");
-        addButton.addActionListener(new ViewButtonListener());
-        addButton.addActionListener(new AddButtonListener());
-        addButton.setFocusable(false);
-        addButton.setBounds(0, 550, 300, 50);
-        frame.add(addButton);
-        removeButton = new JButton("Remove This Restaurant Review!");
-        removeButton.addActionListener(new ViewButtonListener());
-        removeButton.addActionListener(new RemoveButtonListener());
-        removeButton.setFocusable(false);
-        removeButton.setBounds(300, 520, 250, 30);
-        frame.add(removeButton);
-        goAgainButton = new JButton("All Restaurants You Want To Revisit!");
-        goAgainButton.addActionListener(new GoAgainButtonListener());
-        goAgainButton.setFocusable(false);
-        goAgainButton.setBounds(550, 520, 250, 30);
-        frame.add(goAgainButton);
-        viewButton = new JButton("View All The Restaurant Reviews!");
-        viewButton.addActionListener(new ViewButtonListener());
-        viewButton.setBounds(200,170,400,30);
-        viewButton.setFocusable(false);
-        frame.add(viewButton);
-
-        viewTextArea = new JTextArea();
-        viewTextArea.setEditable(false);
-        viewScrollPane = new JScrollPane(viewTextArea);
-        viewScrollPane.setBounds(0,25,800,145);
-        viewScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        viewScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        frame.add(viewScrollPane);
-        frame.add(viewPanel);
-
-        JLabel nameLabel = new JLabel();
-        nameLabel.setText("Name:");
-        nameLabel.setBounds(0,230,50,50);
-        nameTextField = new JTextField();
-        nameTextField.setBounds(50,230,250,50);
-        frame.add(nameLabel);
-        frame.add(nameTextField);
-        JLabel ratingLabel = new JLabel();
-        ratingLabel.setText("Rating:");
-        ratingLabel.setBounds(0,280,50,50);
-        ratingTextField = new JTextField();
-        ratingTextField.setBounds(50,280,250,50);
-        frame.add(ratingLabel);
-        frame.add(ratingTextField);
-        JLabel aveCostLabel = new JLabel();
-        aveCostLabel.setText("Ave Cost:");
-        aveCostLabel.setFont(new Font(Font.DIALOG,0,10));
-        aveCostLabel.setBounds(0,330,50,50);
-        aveCostTextField = new JTextField();
-        aveCostTextField.setBounds(50,330,250,50);
-        frame.add(aveCostLabel);
-        frame.add(aveCostTextField);
-        JLabel titleLabel = new JLabel();
-        titleLabel.setText("Title:");
-        titleLabel.setBounds(0,380,50,50);
-        titleTextField = new JTextField();
-        titleTextField.setBounds(50,380,250,50);
-        frame.add(titleLabel);
-        frame.add(titleTextField);
-        JLabel goAgainLabel = new JLabel();
-        goAgainLabel.setText("Go Again?");
-        goAgainLabel.setFont(new Font(Font.DIALOG,0,10));
-        goAgainLabel.setBounds(0,430,50,50);
-        goAgainTextField = new JTextField();
-        goAgainTextField.setBounds(50,430,250,50);
-        frame.add(goAgainLabel);
-        frame.add(goAgainTextField);
-        frame.add(addMethodPanel);
-
-        JLabel removeRestaurantNameLabel = new JLabel("Name of Restaurant You Want To Remove:");
-        removeRestaurantNameLabel.setBounds(300,250,250,50);
-        removeRestaurantNameTextField = new JTextField();
-        removeRestaurantNameTextField.setBounds(300,302,250,100);
-        frame.add(removeRestaurantNameLabel);
-        frame.add(removeRestaurantNameTextField);
-        frame.add(removeMethodPanel);
-
-        goAgainTextArea = new JTextArea();
-        goAgainTextArea.setEditable(false);
-        goAgainScrollPane = new JScrollPane(goAgainTextArea);
-        goAgainScrollPane.setBounds(550,250,250,275);
-        goAgainScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        goAgainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        frame.add(goAgainScrollPane);
-        frame.add(goAgainMethodPanel);
-
-        frame.add(loadPanel);
-
-        frame.add(savePanel);
-
+        // Construct and set up all the panels in this application
+        new AddPanelClass();
+        new RemovePanelClass();
+        new ViewPanelClass();
+        new GoAgainPanel();
+        new LoadPanel();
+        new SavePanel();
         frame.setVisible(true);
     }
 
@@ -184,8 +78,8 @@ public class RestaurantReviewAppGUI extends JFrame {
     // EFFECTS: display the splash image for 5 seconds when the application starts
     public void displaySplashImage() {
         JWindow splashImage = new JWindow();
-        JLabel label = new JLabel(new ImageIcon("images/splash_image.jpg"));
-        splashImage.getContentPane().add(label, BorderLayout.CENTER);
+        JLabel imageLabel = new JLabel(new ImageIcon("images/splash_image.jpg"));
+        splashImage.getContentPane().add(imageLabel, BorderLayout.CENTER);
         splashImage.setSize(900,600);
         splashImage.setLocationRelativeTo(this);
         splashImage.setVisible(true);
@@ -215,6 +109,181 @@ public class RestaurantReviewAppGUI extends JFrame {
         panelTextLabel.setText(text);
         panelTextLabel.setForeground(new Color(17,5,115));
         return panelTextLabel;
+    }
+
+    // the private class for the add panel
+    @SuppressWarnings("methodlength")
+    private class AddPanelClass extends JFrame {
+        private JButton addButton;
+
+        public AddPanelClass() {
+            JPanel addMethodPanel = addPanel(0,200,300,400);
+            JLabel addMethodTextLabel = generatePanelTextLabel("Add a new restaurant review:");
+            addMethodPanel.add(addMethodTextLabel);
+            addButton = new JButton("Add This Restaurant Review!");
+            addButton.setToolTipText("After typing in the review information of a restaurant"
+                    + ", please click this button to add the restaurant to application.");
+            addButton.addActionListener(new ViewButtonListener());
+            addButton.addActionListener(new AddButtonListener());
+            addButton.setFocusable(false);
+            addButton.setBounds(0, 550, 300, 50);
+            frame.add(addButton);
+            JLabel nameLabel = new JLabel();
+            nameLabel.setText("Name:");
+            nameLabel.setBounds(0,230,50,50);
+            nameTextField = new JTextField();
+            nameTextField.setBounds(50,230,250,50);
+            nameTextField.setToolTipText("the name of the restaurant you want to add");
+            frame.add(nameLabel);
+            frame.add(nameTextField);
+            JLabel ratingLabel = new JLabel();
+            ratingLabel.setText("Rating:");
+            ratingLabel.setBounds(0,280,50,50);
+            ratingTextField = new JTextField();
+            ratingTextField.setBounds(50,280,250,50);
+            ratingTextField.setToolTipText("rating score out of 5, your input could be all real numbers in [0,5]");
+            frame.add(ratingLabel);
+            frame.add(ratingTextField);
+            JLabel aveCostLabel = new JLabel();
+            aveCostLabel.setText("Ave Cost:");
+            aveCostLabel.setFont(new Font(Font.DIALOG, Font.BOLD,10));
+            aveCostLabel.setBounds(0,330,50,50);
+            aveCostTextField = new JTextField();
+            aveCostTextField.setBounds(50,330,250,50);
+            aveCostTextField.setToolTipText("your input should be a non-negative whole number");
+            frame.add(aveCostLabel);
+            frame.add(aveCostTextField);
+            JLabel titleLabel = new JLabel();
+            titleLabel.setText("Title:");
+            titleLabel.setBounds(0,380,50,50);
+            titleTextField = new JTextField();
+            titleTextField.setBounds(50,380,250,50);
+            titleTextField.setToolTipText("any comments about this restaurant that your want to add");
+            frame.add(titleLabel);
+            frame.add(titleTextField);
+            JLabel goAgainLabel = new JLabel();
+            goAgainLabel.setText("Go Again?");
+            goAgainLabel.setFont(new Font(Font.DIALOG, Font.BOLD,10));
+            goAgainLabel.setBounds(0,430,50,50);
+            goAgainTextField = new JTextField();
+            goAgainTextField.setBounds(50,430,250,50);
+            goAgainTextField.setToolTipText("your input should be either true or false");
+            frame.add(goAgainLabel);
+            frame.add(goAgainTextField);
+            frame.add(addMethodPanel);
+        }
+    }
+
+    // the private class for the remove panel
+    private class RemovePanelClass extends JFrame {
+        private JButton removeButton;
+
+        public RemovePanelClass() {
+            JPanel removeMethodPanel = addPanel(300,200,250,350);
+            JLabel removeMethodTextLabel = generatePanelTextLabel("Remove an existing restaurant review:");
+            removeMethodPanel.add(removeMethodTextLabel);
+            removeButton = new JButton("Remove This Restaurant Review!");
+            removeButton.setToolTipText("After typing in the name of the restaurant you want to remove"
+                    + ", please click this button to remove it from application");
+            removeButton.addActionListener(new ViewButtonListener());
+            removeButton.addActionListener(new RemoveButtonListener());
+            removeButton.setFocusable(false);
+            removeButton.setBounds(300, 520, 250, 30);
+            frame.add(removeButton);
+            JLabel removeRestaurantNameLabel = new JLabel("Name of Restaurant You Want To Remove:");
+            removeRestaurantNameLabel.setBounds(300,250,250,50);
+            removeRestaurantNameTextField = new JTextField();
+            removeRestaurantNameTextField.setBounds(300,302,250,100);
+            removeRestaurantNameTextField.setToolTipText("name of the restaurant you want to remove");
+            frame.add(removeRestaurantNameLabel);
+            frame.add(removeRestaurantNameTextField);
+            frame.add(removeMethodPanel);
+        }
+    }
+
+    // the private class for the view panel
+    private class ViewPanelClass extends JFrame {
+        private JButton viewButton;
+
+        public ViewPanelClass() {
+            JPanel viewPanel = addPanel(0,0,800,200);
+            JLabel viewMethodTextLabel = generatePanelTextLabel("You can view all pieces of review information that "
+                    + "have been added to this restaurant review application by clicking the button below.");
+            viewPanel.add(viewMethodTextLabel);
+            viewButton = new JButton("View All The Restaurant Reviews!");
+            viewButton.setToolTipText("View all restaurant review information you have written "
+                     + "by clicking this button");
+            viewButton.addActionListener(new ViewButtonListener());
+            viewButton.setBounds(200,170,400,30);
+            viewButton.setFocusable(false);
+            frame.add(viewButton);
+            viewTextArea = new JTextArea();
+            viewTextArea.setEditable(false);
+            viewScrollPane = new JScrollPane(viewTextArea);
+            viewScrollPane.setBounds(0,25,800,145);
+            viewScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            viewScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            frame.add(viewScrollPane);
+            frame.add(viewPanel);
+        }
+    }
+
+    // the private class for the goAgain panel
+    private class GoAgainPanel extends JFrame {
+        private JButton goAgainButton;
+
+        public GoAgainPanel() {
+            JPanel goAgainMethodPanel = addPanel(550,200,250,350);
+            JLabel goAgainMethodTextLabel = generatePanelTextLabel("Restaurants you want to go again:");
+            goAgainMethodPanel.add(goAgainMethodTextLabel);
+            goAgainButton = new JButton("All Restaurants You Want To Revisit!");
+            goAgainButton.setToolTipText("From all restaurants you have added to this application, "
+                    + "you can find all restaurants you want to go again by clicking this button.");
+            goAgainButton.addActionListener(new GoAgainButtonListener());
+            goAgainButton.setFocusable(false);
+            goAgainButton.setBounds(550, 520, 250, 30);
+            frame.add(goAgainButton);
+            goAgainTextArea = new JTextArea();
+            goAgainTextArea.setEditable(false);
+            goAgainScrollPane = new JScrollPane(goAgainTextArea);
+            goAgainScrollPane.setBounds(550,250,250,275);
+            goAgainScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            goAgainScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            frame.add(goAgainScrollPane);
+            frame.add(goAgainMethodPanel);
+        }
+    }
+
+    // the private class for the load panel
+    private class LoadPanel extends JFrame {
+        private JButton loadButton;
+
+        public LoadPanel() {
+            JPanel loadPanel = addPanel(300,550,250,50);
+            loadButton = new JButton("Load Review From File!");
+            loadButton.setToolTipText("You can load all the restaurant review you have saved by clicking this button.");
+            loadButton.addActionListener(new LoadButtonListener());
+            loadButton.setFocusable(false);
+            loadButton.setBounds(300, 550, 250, 50);
+            frame.add(loadButton);
+            frame.add(loadPanel);
+        }
+    }
+
+    // the private class for the save panel
+    private class SavePanel extends JFrame {
+        private JButton saveButton;
+
+        public SavePanel() {
+            JPanel savePanel = addPanel(550,550,250,50);
+            saveButton = new JButton("Save Review To File!");
+            saveButton.setToolTipText("You can save your restaurant review to file by clicking this button.");
+            saveButton.addActionListener(new SaveButtonListener());
+            saveButton.setFocusable(false);
+            saveButton.setBounds(550, 550, 250, 50);
+            frame.add(saveButton);
+            frame.add(savePanel);
+        }
     }
 
     // the ActionListener class for the load button
