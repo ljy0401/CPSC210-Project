@@ -47,11 +47,11 @@ you had added, which might give you a good choice from your past dining experien
 - As a user, I want to be able to add a new `RestaurantReview` object to my `RestaurantReviewList`
 and specify the name, rating on a scale of 5, the average cost, the keywords or relevant title of the 
 new restaurant, and whether you want to visit it again.
+- As a user, I want to be able to remove the review information of a closed restaurant
+from my `RestaurantReviewList`.
 - As a user, I want to be able to view a subset of restaurant reviews of my choice from 
 the `RestaurantReviewList`. For example, I want to view all restaurants that I want to go again;
 I want to view all restaurants that have a rating with at least some points.
-- As a user, I want to be able to remove the review information of a closed restaurant
-  from my `RestaurantReviewList`.
 - As a user, I want to be able to update the review information of a restaurant after I revisit 
 a specific restaurant.
 - As a user, I want to be able to save my restaurant review list to file if I want to do so before I quit.
@@ -65,3 +65,30 @@ application, there will be a splash image of a restaurant showing up on the scre
 and then the interface window will appear and the splash image will be removed; the second place is the icon 
 on the application window, even though the icon is small to see, but I did change it to a new icon image rather 
 than the default icon given by IntelliJ.
+- When the application starts (after the splash image disappears), you can choose to load the state of 
+this restaurant review application from file by clicking the "Load Review From File!" button.
+- When the application starts  (after the splash image disappears), no matter whether you choose to load
+file or not, you can simply view the initial state of restaurant review information by clicking the "View All 
+Restaurants Review!" button.
+- You can generate the first required action related to the user story "adding multiple restaurant reviews to the
+review list" by typing in the information of a restaurant review (name, rating score out of 5, average cost,
+title, and whether you want to go again) in the corresponding textbox and then simply clicking the "Add This Restaurant
+Review!" button. The rating input could be any real numbers in [0,5]. The average cost should be any 
+non-negative whole number measured in $CAD. The "go again" textbox could be either "true" or "false". After clicking 
+the add button, the "View" panel will automatically display all the restaurant review information
+that have already been added to this application. You don't need to click the "View All Restaurants Review!" button
+again.
+- You can generate the second required action related to the user story "removing a restaurant review from the
+review list" by typing in the name of the restaurant that you want to remove in the textbox and then simply clicking 
+the "Remove Thi Restaurant Review!" button. After clicking the remove button, the "View" panel will automatically 
+display all the restaurant review information that have already been added to this application and are still in 
+this application. You don't need to click the "View All Restaurants Review!" button again.
+- You can generate another required action related to the user story "filter and display all the restaurants 
+you want to revisit from all restaurants you have added to this application" (view a subset of restaurant reviews) 
+by clicking the "All Restaurants You Want To Revisit!" button. Then the screen will display the name of all restaurants 
+you want to go again.
+- Before you quit the application, you can save the state of the application to file by clicking the 
+"Save Review To File!" button.
+- Another feature of this application is that when you hang the mouse over the buttons or input textboxes, you will be 
+able to see a tool tip for the component (e.g. What is this button doing? What should you type in for 
+this textbox? etc.)

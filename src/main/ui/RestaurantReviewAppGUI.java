@@ -19,6 +19,20 @@ import java.util.List;
 // the restaurant review information, add new restaurant to the review list, remove
 // existing restaurants from the review list, view review information of all restaurants
 // you have added to this application, and filter out those you want to revisit.
+
+// Some of the codes in this class were written based on the tutorial examples provided on edX
+// such as components-ListDemoProject, components-ButtonDemoProject, components-ScrollDemoProject,
+// etc. The link to those tutorial demo projects is
+// https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html.
+// More examples could be found on edX on
+// https://learning.edge.edx.org/course/course-v1:UBC+CPSC210+2023W1.
+// The codes for this graphical user interface (GUI) were written using the Java Swing library
+// https://en.wikipedia.org/wiki/Swing_(Java).
+// Another reference to some components of my graphical user interface (GUI) is a YouTube
+// tutorial video "Java GUI: Full Course ☕ (FREE)" by Bro Code found on
+// https://www.youtube.com/watch?v=Kmgo00avvEw. I followed the workflow of the construction of
+// some components of a GUI　taught in that tutorial video, but all codes in this class are
+// written by myself.
 public class RestaurantReviewAppGUI extends JFrame {
     // constants
     private static final int WIDTH = 814;
@@ -141,7 +155,7 @@ public class RestaurantReviewAppGUI extends JFrame {
             ratingLabel.setBounds(0,280,50,50);
             ratingTextField = new JTextField();
             ratingTextField.setBounds(50,280,250,50);
-            ratingTextField.setToolTipText("rating score out of 5, your input could be all real numbers in [0,5]");
+            ratingTextField.setToolTipText("rating score out of 5, your input could be any real numbers in [0,5]");
             frame.add(ratingLabel);
             frame.add(ratingTextField);
             JLabel aveCostLabel = new JLabel();
