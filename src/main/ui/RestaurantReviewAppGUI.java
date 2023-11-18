@@ -32,7 +32,8 @@ import java.util.List;
 // tutorial video "Java GUI: Full Course (FREE)" by Bro Code found on
 // https://www.youtube.com/watch?v=Kmgo00avvEw.
 // I followed the workflow of the construction of some components of a GUI taught in that
-// tutorial video, but all codes in this class are written by myself.
+// tutorial video, but all codes in this class are written by myself. I just used those resources
+// for learning and understanding concepts.
 public class RestaurantReviewAppGUI extends JFrame {
     // constants
     private static final int WIDTH = 814;

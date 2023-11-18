@@ -1,16 +1,37 @@
 {"restaurant reviews": [
     {
         "go again": true,
-        "name": "jason",
-        "rating": 2,
-        "average cost": 2,
-        "title": "dwd"
+        "name": "McDonald's",
+        "rating": 3,
+        "average cost": 15,
+        "title": "fast"
+    },
+    {
+        "go again": true,
+        "name": "Keg SteakHouse",
+        "rating": 4.8,
+        "average cost": 70,
+        "title": "expensive but good"
     },
     {
         "go again": false,
-        "name": "rg",
+        "name": "Sura",
+        "rating": 3,
+        "average cost": 50,
+        "title": "too busy"
+    },
+    {
+        "go again": false,
+        "name": "Kokoro",
+        "rating": 2.5,
+        "average cost": 25,
+        "title": "ramen"
+    },
+    {
+        "go again": true,
+        "name": "Haidilao Hot Pot",
         "rating": 5,
-        "average cost": 23,
-        "title": "true"
+        "average cost": 50,
+        "title": "special and good service"
     }
 ]}
