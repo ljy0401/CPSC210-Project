@@ -47,7 +47,7 @@ public class RestaurantReviewAppGUI extends JFrame {
     // the overall frame field
     private JFrame frame;
 
-    // all the text input fields
+    // all the input textbox fields
     private JTextField nameTextField;
     private JTextField ratingTextField;
     private JTextField aveCostTextField;
@@ -74,7 +74,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         frame = new JFrame("Restaurant Review Application");
         frame.setSize(WIDTH,HEIGHT);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("images/icon.jpg");
+        ImageIcon icon = new ImageIcon("data/image/icon.jpg");
         frame.setIconImage(icon.getImage());
         frame.setLayout(null);
 
@@ -91,18 +91,18 @@ public class RestaurantReviewAppGUI extends JFrame {
     // MODIFIES: splashImage
     // EFFECTS: display the splash image for 5 seconds when the application starts
     public void displaySplashImage() {
-        JWindow splashImage = new JWindow();
-        JLabel imageLabel = new JLabel(new ImageIcon("images/splash_image.jpg"));
-        splashImage.getContentPane().add(imageLabel, BorderLayout.CENTER);
-        splashImage.setSize(900,600);
-        splashImage.setLocationRelativeTo(this);
-        splashImage.setVisible(true);
+        JWindow splashImageWindow = new JWindow();
+        JLabel imageLabel = new JLabel(new ImageIcon("data/image/splash_image.jpg"));
+        splashImageWindow.getContentPane().add(imageLabel, BorderLayout.CENTER);
+        splashImageWindow.setSize(900,600);
+        splashImageWindow.setLocationRelativeTo(this);
+        splashImageWindow.setVisible(true);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        splashImage.setVisible(false);
+        splashImageWindow.setVisible(false);
     }
 
     // MODIFIES: newPanel
