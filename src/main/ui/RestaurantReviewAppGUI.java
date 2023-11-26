@@ -310,7 +310,6 @@ public class RestaurantReviewAppGUI extends JFrame {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            System.out.println("loaded!");
         }
     }
 
@@ -325,7 +324,6 @@ public class RestaurantReviewAppGUI extends JFrame {
             }
             jsonWriter.write(restaurantReviewList);
             jsonWriter.close();
-            System.out.println("Saved!");
         }
     }
 
@@ -344,7 +342,6 @@ public class RestaurantReviewAppGUI extends JFrame {
             aveCostTextField.setText("");
             titleTextField.setText("");
             goAgainTextField.setText("");
-            System.out.println("Added!");
         }
     }
 
@@ -355,7 +352,6 @@ public class RestaurantReviewAppGUI extends JFrame {
             String nameRemoved = removeRestaurantNameTextField.getText();
             restaurantReviewList.removeRestaurantReview(nameRemoved);
             removeRestaurantNameTextField.setText("");
-            System.out.println("Removed!");
         }
     }
 
@@ -373,7 +369,6 @@ public class RestaurantReviewAppGUI extends JFrame {
                 }
                 goAgainTextArea.setText(goAgainMessage);
             }
-            System.out.println("Go Again!");
         }
     }
 
@@ -381,28 +376,7 @@ public class RestaurantReviewAppGUI extends JFrame {
     private class ViewButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<RestaurantReview> restaurantReviews = restaurantReviewList.getReviewList();
-            if (restaurantReviews.isEmpty()) {
-                viewTextArea.setText("You don't have any restaurants in your restaurant review "
-                        + "application right now! Please add some first!");
-            } else {
-                String viewMessage = "";
-                for (RestaurantReview rr : restaurantReviews) {
-                    if (rr.getGoAgain()) {
-                        viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
-                                + rr.getRating() + " out of 5, and the average cost of CAD $"
-                                + rr.getAverageCost() + ".\nThe title of the restaurant is "
-                                + rr.getTitle() + " and you want to go there again. \n\n";
-                    } else {
-                        viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
-                                + rr.getRating() + " out of 5, and the average cost of CAD $"
-                                + rr.getAverageCost() + ".\nThe title of the restaurant is "
-                                + rr.getTitle() + " and you don't want to go there again. \n\n";
-                    }
-                }
-                viewTextArea.setText(viewMessage);
-            }
-            System.out.println("Viewed!");
+            viewTextArea.setText(restaurantReviewList.getViewMessageForGUI());
         }
     }
 

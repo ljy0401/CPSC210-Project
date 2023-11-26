@@ -15,6 +15,7 @@ import java.util.List;
 
 public class RestaurantReviewList implements Writable {
     private List<RestaurantReview> reviewList;
+    private EventLog eventLog = EventLog.getInstance();
 
     // EFFECTS: construct a new restaurant review list with no restaurants in it
     public RestaurantReviewList() {
@@ -29,6 +30,8 @@ public class RestaurantReviewList implements Writable {
     public void addRestaurantReview(String name, double rating, int averageCost,
                                     String title, boolean goAgain) {
         this.reviewList.add(new RestaurantReview(name, rating, averageCost, title, goAgain));
+        eventLog.logEvent(new Event("A new restaurant was added to the "
+                + "restaurant review list!"));
     }
 
     // REQUIRES: the name is not an empty string, the review list is not empty,
@@ -45,6 +48,8 @@ public class RestaurantReviewList implements Writable {
             }
         }
         this.reviewList.remove(movedRestaurant);
+        eventLog.logEvent(new Event("A restaurant was removed from the "
+                + "restaurant review list!"));
     }
 
     // REQUIRES: the name is not an empty string, the review list is not empty,
@@ -62,6 +67,8 @@ public class RestaurantReviewList implements Writable {
                 rr.setAverageCost(newAverageCost);
                 rr.setTitle(newTitle);
                 rr.setGoAgain(newGoAgain);
+                eventLog.logEvent(new Event("The review information of a "
+                        + "restaurant was updated in the restaurant review list!"));
             }
         }
     }
@@ -75,6 +82,8 @@ public class RestaurantReviewList implements Writable {
                 goAgainRestaurants.add(rr);
             }
         }
+        eventLog.logEvent(new Event("You viewed all the restaurants "
+                + "that you want to revisit from the restaurant review list!"));
         return goAgainRestaurants;
     }
 
@@ -88,12 +97,44 @@ public class RestaurantReviewList implements Writable {
                 atLeastRatingRestaurants.add(rr);
             }
         }
+        eventLog.logEvent(new Event("You viewed all the restaurants that "
+                + "have at least a specified minimum rating score from the restaurant review list!"));
         return atLeastRatingRestaurants;
     }
 
     // EFFECTS: returns the restaurants review list
     public List<RestaurantReview> getReviewList() {
         return this.reviewList;
+    }
+
+    // EFFECTS: return the view message for the GUI when you want to view all the
+    // restaurant review information from the review list
+    @SuppressWarnings("methodlength")
+    public String getViewMessageForGUI() {
+        List<RestaurantReview> restaurantReviews = this.getReviewList();
+        String viewMessage = "";
+        if (restaurantReviews.isEmpty()) {
+            viewMessage = "You don't have any restaurants in your restaurant review "
+                    + "application right now! Please add some first!";
+        } else {
+            for (RestaurantReview rr : restaurantReviews) {
+                if (rr.getGoAgain()) {
+                    viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
+                            + rr.getRating() + " out of 5, and the average cost of CAD $"
+                            + rr.getAverageCost() + ".\nThe title of the restaurant is "
+                            + rr.getTitle() + " and you want to go there again. \n\n";
+                } else {
+                    viewMessage = viewMessage + "The restaurant " + rr.getName() + " has a rating score "
+                            + rr.getRating() + " out of 5, and the average cost of CAD $"
+                            + rr.getAverageCost() + ".\nThe title of the restaurant is "
+                            + rr.getTitle() + " and you don't want to go there again. \n\n";
+                }
+            }
+        }
+        eventLog.logEvent(new Event("All the restaurant review information "
+                + "from the restaurant review list was displayed (or automatically updated and "
+                + "displayed after adding or removing) in the APP!"));
+        return viewMessage;
     }
 
     @Override
