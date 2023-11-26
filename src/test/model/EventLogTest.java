@@ -12,6 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the EventLog class
  */
+
+// This class was copied from the Alarm System application provided on edX.
+// The link to this project is: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.
 public class EventLogTest {
 	private Event e1;
 	private Event e2;

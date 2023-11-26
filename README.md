@@ -92,3 +92,30 @@ you want to go again.
 - Another feature of this application is that when you hang the mouse over the buttons or input textboxes, you will be 
 able to see a tool tip for the component (e.g. What is this button doing? What should you type in for 
 this textbox? etc.)
+
+## Phase 4: Task 2
+Here is an example of the event log when my program runs:\
+\
+Sun Nov 26 00:54:44 PST 2023\
+All the restaurant review information from the restaurant review list was displayed 
+(or automatically updated and displayed after adding or removing) in the APP!\
+\
+Sun Nov 26 00:54:48 PST 2023\
+You viewed all the restaurants that you want to revisit from the restaurant review list!\
+\
+Sun Nov 26 00:54:55 PST 2023\
+A restaurant was removed from the restaurant review list!\
+\
+Sun Nov 26 00:54:55 PST 2023\
+All the restaurant review information from the restaurant review list was displayed 
+(or automatically updated and displayed after adding or removing) in the APP!\
+\
+Sun Nov 26 00:55:14 PST 2023\
+A new restaurant was added to the restaurant review list!\
+\
+Sun Nov 26 00:55:14 PST 2023\
+All the restaurant review information from the restaurant review list was displayed 
+(or automatically updated and displayed after adding or removing) in the APP!\
+\
+Sun Nov 26 00:55:15 PST 2023\
+You viewed all the restaurants that you want to revisit from the restaurant review list!

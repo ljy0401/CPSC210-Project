@@ -10,6 +10,9 @@ import java.util.Iterator;
  * one EventLog in the system and that the system has global access
  * to the single instance of the EventLog.
  */
+
+// This class was copied from the Alarm System application provided on edX.
+// The link to this project is: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.
 public class EventLog implements Iterable<Event> {
     /**
      * the only EventLog in the system (Singleton Design Pattern)

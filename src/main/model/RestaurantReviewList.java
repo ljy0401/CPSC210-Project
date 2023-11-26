@@ -30,6 +30,16 @@ public class RestaurantReviewList implements Writable {
     public void addRestaurantReview(String name, double rating, int averageCost,
                                     String title, boolean goAgain) {
         this.reviewList.add(new RestaurantReview(name, rating, averageCost, title, goAgain));
+    }
+
+    // REQUIRES: the name is not an empty string; 0 <= rating <= 5;
+    // averageCost > 0 in whole CAD; the title is not an empty string
+    // MODIFIES: this
+    // EFFECTS: add a new review information of a restaurant with the given information
+    // to the restaurant review list, this method is specific for the GUI action listener
+    public void addRestaurantReviewForGUI(String name, double rating, int averageCost,
+                                    String title, boolean goAgain) {
+        this.reviewList.add(new RestaurantReview(name, rating, averageCost, title, goAgain));
         eventLog.logEvent(new Event("A new restaurant was added to the "
                 + "restaurant review list!"));
     }
@@ -135,6 +145,11 @@ public class RestaurantReviewList implements Writable {
                 + "from the restaurant review list was displayed (or automatically updated and "
                 + "displayed after adding or removing) in the APP!"));
         return viewMessage;
+    }
+
+    // EFFECTS: get the event log
+    public EventLog getEventLog() {
+        return this.eventLog;
     }
 
     @Override

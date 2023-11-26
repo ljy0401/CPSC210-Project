@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.RestaurantReview;
 import model.RestaurantReviewList;
 import persistence.JsonReader;
@@ -8,8 +10,7 @@ import persistence.JsonWriter;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -64,6 +65,7 @@ public class RestaurantReviewAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: constructs the frame and components for the Restaurant Review APP graphical user interface
+    @SuppressWarnings("methodlength")
     public RestaurantReviewAppGUI() {
         // initialize the Restaurant Review List and the JSON objects
         restaurantReviewList = new RestaurantReviewList();
@@ -74,7 +76,7 @@ public class RestaurantReviewAppGUI extends JFrame {
         displaySplashImage();
         frame = new JFrame("Restaurant Review Application");
         frame.setSize(WIDTH,HEIGHT);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ImageIcon icon = new ImageIcon("data/image/icon.jpg");
         frame.setIconImage(icon.getImage());
         frame.setLayout(null);
@@ -86,6 +88,15 @@ public class RestaurantReviewAppGUI extends JFrame {
         new GoAgainPanel();
         new LoadPanel();
         new SavePanel();
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                EventLog applicationEventLog = restaurantReviewList.getEventLog();
+                for (Event nextEvent : applicationEventLog) {
+                    System.out.println(nextEvent.toString());
+                }
+            }
+        });
         frame.setVisible(true);
     }
 
@@ -336,7 +347,7 @@ public class RestaurantReviewAppGUI extends JFrame {
             int averageCost = Integer.parseInt(aveCostTextField.getText());
             String title = titleTextField.getText();
             boolean goAgain = Boolean.parseBoolean(goAgainTextField.getText());
-            restaurantReviewList.addRestaurantReview(name,rating,averageCost,title,goAgain);
+            restaurantReviewList.addRestaurantReviewForGUI(name,rating,averageCost,title,goAgain);
             nameTextField.setText("");
             ratingTextField.setText("");
             aveCostTextField.setText("");
