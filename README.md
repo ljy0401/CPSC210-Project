@@ -144,6 +144,7 @@ classes relations associated to the Json classes and the Event or EventLog class
 but the two user interface classes (GUI and console-based) are highly dependent on the 
 RestaurantReviewList class which itself depends on the RestaurantReview class. Therefore, any 
 changes in the RestaurantReview class will trigger bugs or even errors in the RestaurantReviewList
-class and the two user interface classes. One of the possible ways to deal with it is to remove 
-the association arrows from the user interface classes to the RestaurantReviewList class, and make
-the two user interface classes directly include a collection of RestaurantReview as a field.
+class and the two user interface classes. This is an indicator of very high degree of coupling. 
+One of the possible ways to deal with it is to remove the association arrows from the user interface 
+classes to the RestaurantReviewList class, and make the two user interface classes directly include 
+a collection of RestaurantReview as a field.
