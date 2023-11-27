@@ -121,3 +121,29 @@ Sun Nov 26 00:55:15 PST 2023\
 You viewed all the restaurants that you want to revisit from the restaurant review list!
 
 ## Phase 4: Task 3
+The UML class diagram of my program looks clear and easy to follow, but it is still necessary
+to improve the design of my program by making it more cohesive and reducing the coupling 
+between classes. 
+
+Most classes in the model package are very cohesive. The RestaurantReview and RestaurantReviewList
+classes mainly focus on their own  responsibility; the only place in the model package that can 
+improve the cohesion of the design is where I can make the RestaurantReview class abstract and
+let the two restaurant review classes (the restaurant that you want to revisit & the restaurant 
+that you don't want to go again) extend the abstract RestaurantReview class. The reason is that
+in my program, we need to filter all restaurants we want to go again and the printed message for 
+this two types of restaurants are different, which makes it helpful to separate them into two distinct
+subclasses. And the part that is the least cohesive is the GUI (RestaurantReviewAPPGUI) class.
+There are many private classes in my GUI class, which constructs the panel related to each action
+(i.e. Add, Remove, Load, etc). This is significantly against Single Responsibility Principle. I 
+think it would be easy to refactor it just by taking those private panel classes out from the main
+GUI class so that each panel class is associated with only one particular action and focus on its 
+own responsibility.
+
+Both the Moderate Coupling and Semantic Coupling are possible in this design. I believe most of 
+classes relations associated to the Json classes and the Event or EventLog class are working fine,
+but the two user interface classes (GUI and console-based) are highly dependent on the 
+RestaurantReviewList class which itself depends on the RestaurantReview class. Therefore, any 
+changes in the RestaurantReview class will trigger bugs or even errors in the RestaurantReviewList
+class and the two user interface classes. One of the possible ways to deal with it is to remove 
+the association arrows from the user interface classes to the RestaurantReviewList class, and make
+the two user interface classes directly include a collection of RestaurantReview as a field.
